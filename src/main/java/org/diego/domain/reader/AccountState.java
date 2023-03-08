@@ -10,10 +10,8 @@ public class AccountState extends Entity<AccountStateId> {
     private Lenbooks lenbooks;
     private OverdueBooks overdueBooks;
 
-    public AccountState(AccountStateId id, Lenbooks lenbooks, OverdueBooks overdueBooks) {
+    public AccountState(AccountStateId id) {
         super(id);
-        this.lenbooks = lenbooks;
-        this.overdueBooks = overdueBooks;
     }
 
     public Lenbooks Lenbooks() {

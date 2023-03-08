@@ -39,4 +39,8 @@ public class Account extends Entity<AccountId> {
     }
 
     //put methods here
+
+    public void editEmail(String email){
+        this.email = new Email(email);
+    }
 }

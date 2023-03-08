@@ -7,6 +7,11 @@ public class FullName implements ValueObject<FullName.Props> {
     private String name;
     private String lastName;
 
+    public FullName(String name, String lastName) {
+        this.name = name;
+        this.lastName = lastName;
+    }
+
     @Override
     public Props value() {
         return new Props() {
