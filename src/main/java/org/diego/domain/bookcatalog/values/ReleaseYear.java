@@ -1,4 +1,20 @@
 package org.diego.domain.bookcatalog.values;
 
-public class ReleaseYear {
+import org.diego.generic.ValueObject;
+
+import java.util.Date;
+
+public class ReleaseYear implements ValueObject<Date> {
+
+
+    private Date value;
+
+    public ReleaseYear(String value) {
+        this.value = new Date(value);
+    }
+
+    @Override
+    public Date value() {
+        return value;
+    }
 }
