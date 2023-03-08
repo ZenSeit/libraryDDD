@@ -31,9 +31,5 @@ public class ReaderChange extends EventChange {
             reader.valoration = new Valoration(event.getValoration());
         });
 
-        apply((EditEmail event) ->{
-
-        });
-
     }
 }
