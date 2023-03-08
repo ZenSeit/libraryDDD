@@ -1,6 +1,8 @@
 package org.diego.domain.bookcatalog;
 
+import org.diego.domain.bookcatalog.events.BookAdded;
 import org.diego.domain.bookcatalog.events.BookCatalogCreated;
+import org.diego.domain.bookcatalog.events.BookRemoved;
 import org.diego.domain.commonvalues.BookCatalogId;
 import org.diego.domain.commonvalues.CreatedAt;
 import org.diego.domain.commonvalues.Name;
@@ -30,6 +32,16 @@ public class BookCatalog extends AggregateRoot<BookCatalogId> {
         BookCatalog bookCatalog = new BookCatalog(id);
         events.forEach(event ->bookCatalog.applyEvent(event));
         return bookCatalog;
+    }
+
+    public void AddBook(String bookId,String name,String authorId,String authorName,String authorLastName,String authorCountry
+    ,String authorDebutYear,String releaseYear,String genre){
+        appendChange(new BookAdded(bookId,name,authorId,authorName,authorLastName,authorCountry,authorDebutYear,releaseYear,
+                genre)).apply();
+    }
+
+    public void removeBook(String bookId){
+        appendChange(new BookRemoved(bookId)).apply();
     }
 
 
