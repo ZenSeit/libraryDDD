@@ -2,8 +2,8 @@ package org.diego.domain.reader;
 
 import org.diego.domain.commonvalues.ReaderId;
 import org.diego.domain.commonvalues.Valoration;
-import org.diego.domain.reader.events.ChangeValoration;
-import org.diego.domain.reader.events.EditEmail;
+import org.diego.domain.reader.events.ValorationChanged;
+import org.diego.domain.reader.events.EmailEdited;
 import org.diego.domain.reader.events.ReaderRegistered;
 import org.diego.generic.AggregateRoot;
 import org.diego.generic.DomainEvent;
@@ -37,11 +37,11 @@ public class Reader extends AggregateRoot<ReaderId> {
 
     public void editEmail(String email){
         Objects.requireNonNull(email);
-        appendChange(new EditEmail(email)).apply();
+        appendChange(new EmailEdited(email)).apply();
     }
 
     public void changeValoration(double valoration){
-        appendChange(new ChangeValoration(valoration)).apply();
+        appendChange(new ValorationChanged(valoration)).apply();
     }
 
 }

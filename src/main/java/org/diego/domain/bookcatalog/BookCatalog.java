@@ -3,6 +3,7 @@ package org.diego.domain.bookcatalog;
 import org.diego.domain.bookcatalog.events.BookAdded;
 import org.diego.domain.bookcatalog.events.BookCatalogCreated;
 import org.diego.domain.bookcatalog.events.BookRemoved;
+import org.diego.domain.bookcatalog.events.BookStateChanged;
 import org.diego.domain.commonvalues.BookCatalogId;
 import org.diego.domain.commonvalues.CreatedAt;
 import org.diego.domain.commonvalues.Name;
@@ -42,6 +43,10 @@ public class BookCatalog extends AggregateRoot<BookCatalogId> {
 
     public void removeBook(String bookId){
         appendChange(new BookRemoved(bookId)).apply();
+    }
+
+    public void changeStateBook(String bookId){
+        appendChange(new BookStateChanged(bookId)).apply();
     }
 
 

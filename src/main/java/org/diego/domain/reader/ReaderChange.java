@@ -1,8 +1,8 @@
 package org.diego.domain.reader;
 
 import org.diego.domain.commonvalues.*;
-import org.diego.domain.reader.events.ChangeValoration;
-import org.diego.domain.reader.events.EditEmail;
+import org.diego.domain.reader.events.ValorationChanged;
+import org.diego.domain.reader.events.EmailEdited;
 import org.diego.domain.reader.events.ReaderRegistered;
 import org.diego.domain.reader.values.Dni;
 import org.diego.domain.reader.values.Email;
@@ -21,14 +21,15 @@ public class ReaderChange extends EventChange {
 
             );
             reader.accountState = new AccountState(AccountStateId.of("accountStateId"));
+            reader.valoration = new Valoration(5.0);
         });
 
-        apply((EditEmail event) ->{
+        apply((EmailEdited event) ->{
             reader.account.editEmail(event.getEmail());
         });
 
-        apply((ChangeValoration event) ->{
-            reader.valoration = new Valoration(event.getValoration());
+        apply((ValorationChanged event) ->{
+            reader.valoration = new Valoration((reader.valoration.value()+event.getValoration())/2);
         });
 
     }

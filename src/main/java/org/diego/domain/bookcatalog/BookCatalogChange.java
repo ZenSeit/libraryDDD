@@ -3,10 +3,8 @@ package org.diego.domain.bookcatalog;
 import org.diego.domain.bookcatalog.events.BookAdded;
 import org.diego.domain.bookcatalog.events.BookCatalogCreated;
 import org.diego.domain.bookcatalog.events.BookRemoved;
-import org.diego.domain.bookcatalog.values.Country;
-import org.diego.domain.bookcatalog.values.DebutYear;
-import org.diego.domain.bookcatalog.values.Genre;
-import org.diego.domain.bookcatalog.values.ReleaseYear;
+import org.diego.domain.bookcatalog.events.BookStateChanged;
+import org.diego.domain.bookcatalog.values.*;
 import org.diego.domain.commonvalues.*;
 import org.diego.generic.EventChange;
 
@@ -41,6 +39,13 @@ public class BookCatalogChange extends EventChange {
             bookCatalog.book = bookCatalog.book.stream()
                     .filter(bk->!bk.identity().value().equalsIgnoreCase(event.getBookId()))
                     .toList();
+        });
+
+        apply((BookStateChanged event)->{
+            bookCatalog.book.forEach(bk -> {
+                if (bk.identity().value().equalsIgnoreCase(event.getBookId())) {
+                    bk.changeIsBorrow(!bk.IsBorrow().value());
+                }});
         });
 
         //apply(()->{});

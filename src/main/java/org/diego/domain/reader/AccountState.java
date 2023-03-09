@@ -12,6 +12,8 @@ public class AccountState extends Entity<AccountStateId> {
 
     public AccountState(AccountStateId id) {
         super(id);
+        this.lenbooks = new Lenbooks(0);
+        this.overdueBooks = new OverdueBooks(0);
     }
 
     public Lenbooks Lenbooks() {

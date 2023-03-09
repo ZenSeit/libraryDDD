@@ -21,7 +21,7 @@ public class Book extends Entity<BookId> {
         this.author = author;
         this.releaseYear = releaseYear;
         this.genre = genre;
-        this.isBorrow = new IsBorrow(true);
+        this.isBorrow = new IsBorrow(false);
     }
 
     public Name Name() {
@@ -42,5 +42,9 @@ public class Book extends Entity<BookId> {
 
     public IsBorrow IsBorrow() {
         return isBorrow;
+    }
+
+    public void changeIsBorrow(boolean value){
+        this.isBorrow=new IsBorrow(value);
     }
 }
