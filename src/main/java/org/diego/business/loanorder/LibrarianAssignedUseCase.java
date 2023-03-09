@@ -8,9 +8,11 @@ import org.diego.domain.commonvalues.LoanOrderId;
 import org.diego.domain.loanorder.LoanOrder;
 import org.diego.domain.loanorder.commands.AssignLibrarianCommand;
 import org.diego.generic.DomainEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class LibrarianAssignedUseCase implements UserCaseForCommand<AssignLibrarianCommand> {
 
     private final EventsRepository eventsRepository;

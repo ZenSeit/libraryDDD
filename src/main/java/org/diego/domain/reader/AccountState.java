@@ -23,4 +23,8 @@ public class AccountState extends Entity<AccountStateId> {
     public OverdueBooks OverdueBooks() {
         return overdueBooks;
     }
+
+    public void addLenBook (){
+        this.lenbooks = new Lenbooks(lenbooks.value()+1);
+    }
 }

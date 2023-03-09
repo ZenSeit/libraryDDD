@@ -2,6 +2,7 @@ package org.diego.domain.reader;
 
 import org.diego.domain.commonvalues.ReaderId;
 import org.diego.domain.commonvalues.Valoration;
+import org.diego.domain.reader.events.LenBookAdded;
 import org.diego.domain.reader.events.ValorationChanged;
 import org.diego.domain.reader.events.EmailEdited;
 import org.diego.domain.reader.events.ReaderRegistered;
@@ -40,8 +41,11 @@ public class Reader extends AggregateRoot<ReaderId> {
         appendChange(new EmailEdited(email)).apply();
     }
 
-    public void changeValoration(double valoration){
+    public void changeValoration(double valoration) {
         appendChange(new ValorationChanged(valoration)).apply();
+    }
+    public void AddLenBook(){
+        appendChange(new LenBookAdded()).apply();
     }
 
 }

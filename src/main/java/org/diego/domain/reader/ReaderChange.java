@@ -1,6 +1,7 @@
 package org.diego.domain.reader;
 
 import org.diego.domain.commonvalues.*;
+import org.diego.domain.reader.events.LenBookAdded;
 import org.diego.domain.reader.events.ValorationChanged;
 import org.diego.domain.reader.events.EmailEdited;
 import org.diego.domain.reader.events.ReaderRegistered;
@@ -30,6 +31,10 @@ public class ReaderChange extends EventChange {
 
         apply((ValorationChanged event) ->{
             reader.valoration = new Valoration((reader.valoration.value()+event.getValoration())/2);
+        });
+
+        apply((LenBookAdded event) ->{
+            reader.accountState.addLenBook();
         });
 
     }

@@ -6,9 +6,11 @@ import org.diego.domain.commonvalues.ReaderId;
 import org.diego.domain.reader.Reader;
 import org.diego.domain.reader.commands.EditEmailCommand;
 import org.diego.generic.DomainEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class EmailEditedUseCase implements UserCaseForCommand<EditEmailCommand> {
 
     private final EventsRepository eventsRepository;

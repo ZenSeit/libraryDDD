@@ -6,9 +6,11 @@ import org.diego.domain.bookcatalog.BookCatalog;
 import org.diego.domain.bookcatalog.commands.ChangeStateBookCommand;
 import org.diego.domain.commonvalues.BookCatalogId;
 import org.diego.generic.DomainEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BookStateChangeUseCase implements UserCaseForCommand<ChangeStateBookCommand> {
 
     private final EventsRepository eventsRepository;

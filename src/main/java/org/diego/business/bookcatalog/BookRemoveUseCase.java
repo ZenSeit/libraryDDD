@@ -6,9 +6,11 @@ import org.diego.domain.bookcatalog.BookCatalog;
 import org.diego.domain.bookcatalog.commands.RemoveBookCommand;
 import org.diego.domain.commonvalues.BookCatalogId;
 import org.diego.generic.DomainEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BookRemoveUseCase implements UserCaseForCommand<RemoveBookCommand> {
 
     private final EventsRepository eventsRepository;

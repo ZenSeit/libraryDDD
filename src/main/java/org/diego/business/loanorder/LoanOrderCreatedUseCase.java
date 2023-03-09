@@ -6,9 +6,11 @@ import org.diego.domain.commonvalues.LoanOrderId;
 import org.diego.domain.loanorder.LoanOrder;
 import org.diego.domain.loanorder.commands.CreateLoanOrderCommand;
 import org.diego.generic.DomainEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class LoanOrderCreatedUseCase implements UserCaseForCommand<CreateLoanOrderCommand> {
 
     private final EventsRepository eventsRepository;

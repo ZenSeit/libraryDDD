@@ -4,26 +4,26 @@ import org.diego.business.commons.EventsRepository;
 import org.diego.business.commons.UserCaseForCommand;
 import org.diego.domain.commonvalues.ReaderId;
 import org.diego.domain.reader.Reader;
-import org.diego.domain.reader.commands.ChangeValorationCommand;
+import org.diego.domain.reader.commands.AddLenBookCommand;
 import org.diego.generic.DomainEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ValorationChangedUseCase implements UserCaseForCommand<ChangeValorationCommand> {
+public class LenBookAddedUseCase implements UserCaseForCommand<AddLenBookCommand> {
 
     private final EventsRepository eventsRepository;
 
-    public ValorationChangedUseCase(EventsRepository eventsRepository) {
+    public LenBookAddedUseCase(EventsRepository eventsRepository) {
         this.eventsRepository = eventsRepository;
     }
 
     @Override
-    public List<DomainEvent> apply(ChangeValorationCommand command) {
+    public List<DomainEvent> apply(AddLenBookCommand command) {
         List<DomainEvent> readerEvents =  eventsRepository.findByAggregatedRootId(command.getReaderId());
         Reader reader = Reader.from(ReaderId.of(command.getReaderId()),readerEvents);
-        reader.changeValoration(command.getValoration());
+        reader.AddLenBook();
         return reader.getUncommittedChanges().stream().map(eventsRepository::saveEvent).toList();
     }
 }
