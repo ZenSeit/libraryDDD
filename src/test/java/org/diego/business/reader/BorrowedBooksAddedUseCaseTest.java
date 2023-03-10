@@ -44,7 +44,7 @@ class BorrowedBooksAddedUseCaseTest {
 
         List<DomainEvent> domainEventList = lenBookAddedUseCase.apply(addLenBookCommand);
 
-        Assertions.assertEquals("org.diego.editemail",domainEventList.get(0).type);
+        Assertions.assertEquals("org.diego.borrowedbookadded",domainEventList.get(0).type);
     }
 
 }
