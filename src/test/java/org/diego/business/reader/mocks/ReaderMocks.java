@@ -8,6 +8,6 @@ public class ReaderMocks {
     public static DomainEvent readerRegisteredMock (){
         return new ReaderRegistered("accountId",
                 "Diego","Becerra","diego@correo.com",
-                "peter st","johns",5,"5632889");
+                "peter st","johns",5,"5632889793");
     }
 }

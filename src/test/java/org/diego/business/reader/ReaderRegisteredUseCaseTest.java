@@ -34,7 +34,7 @@ class ReaderRegisteredUseCaseTest {
     void successfulScenario(){
 
         RegisterReaderCommand registerReaderCommand = new RegisterReaderCommand("readerId","accountId",
-                "Diego","Becerra","diego@correo.com","peter st","johns",5,"5632889");
+                "Diego","Becerra","diego@correo.com","peter st","johns",5,"563288963");
 
         Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(ReaderRegistered.class)))
                 .thenAnswer(invocationOnMock -> {
