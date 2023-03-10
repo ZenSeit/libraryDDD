@@ -43,4 +43,8 @@ public class Account extends Entity<AccountId> {
     public void editEmail(String email){
         this.email = new Email(email);
     }
+
+    public void modifyAddress(String street,String avenue,int houseNumber){
+        this.address = new Address(street,avenue,houseNumber);
+    }
 }

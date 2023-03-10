@@ -2,6 +2,7 @@ package org.diego.domain.loanorder;
 
 import org.diego.domain.commonvalues.*;
 import org.diego.domain.loanorder.events.LibrarianAssigned;
+import org.diego.domain.loanorder.events.LibrarianRatingChanged;
 import org.diego.domain.loanorder.events.LoanOrderCreated;
 import org.diego.domain.loanorder.values.City;
 import org.diego.domain.loanorder.values.Phone;
@@ -28,6 +29,10 @@ public class LoanOrderChange extends EventChange {
                     new FullName(event.getName(), event.getLastName()),
                     new WorkSchedule(event.getFromHour(), event.getToHour())
             );
+        });
+
+        apply((LibrarianRatingChanged event)->{
+            loanOrder.librarian.changeRating((loanOrder.librarian.Rating().value()+ event.getRating())/2);
         });
 
     }

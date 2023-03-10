@@ -1,10 +1,7 @@
 package org.diego.domain.reader;
 
 import org.diego.domain.commonvalues.*;
-import org.diego.domain.reader.events.LenBookAdded;
-import org.diego.domain.reader.events.ValorationChanged;
-import org.diego.domain.reader.events.EmailEdited;
-import org.diego.domain.reader.events.ReaderRegistered;
+import org.diego.domain.reader.events.*;
 import org.diego.domain.reader.values.Dni;
 import org.diego.domain.reader.values.Email;
 import org.diego.generic.EventChange;
@@ -22,7 +19,7 @@ public class ReaderChange extends EventChange {
 
             );
             reader.accountState = new AccountState(AccountStateId.of("accountStateId"));
-            reader.valoration = new Valoration(5.0);
+            reader.rating = new Rating(5.0);
         });
 
         apply((EmailEdited event) ->{
@@ -30,11 +27,15 @@ public class ReaderChange extends EventChange {
         });
 
         apply((ValorationChanged event) ->{
-            reader.valoration = new Valoration((reader.valoration.value()+event.getValoration())/2);
+            reader.rating = new Rating((reader.rating.value()+event.getValoration())/2);
         });
 
-        apply((LenBookAdded event) ->{
-            reader.accountState.addLenBook();
+        apply((BorrowedBookAdded event) ->{
+            reader.accountState.addLoanedBook();
+        });
+
+        apply((AddressModified event) ->{
+            reader.account.modifyAddress(event.getStreet(), event.getAvenue(), event.getHouseNumber());
         });
 
     }

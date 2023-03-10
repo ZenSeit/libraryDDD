@@ -7,24 +7,24 @@ import org.diego.generic.Entity;
 
 public class AccountState extends Entity<AccountStateId> {
 
-    private Lenbooks lenbooks;
+    private Lenbooks loanedbooks;
     private OverdueBooks overdueBooks;
 
     public AccountState(AccountStateId id) {
         super(id);
-        this.lenbooks = new Lenbooks(0);
+        this.loanedbooks = new Lenbooks(0);
         this.overdueBooks = new OverdueBooks(0);
     }
 
     public Lenbooks Lenbooks() {
-        return lenbooks;
+        return loanedbooks;
     }
 
     public OverdueBooks OverdueBooks() {
         return overdueBooks;
     }
 
-    public void addLenBook (){
-        this.lenbooks = new Lenbooks(lenbooks.value()+1);
+    public void addLoanedBook (){
+        this.loanedbooks = new Lenbooks(loanedbooks.value()+1);
     }
 }

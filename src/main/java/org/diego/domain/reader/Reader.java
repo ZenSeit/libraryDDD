@@ -1,11 +1,8 @@
 package org.diego.domain.reader;
 
 import org.diego.domain.commonvalues.ReaderId;
-import org.diego.domain.commonvalues.Valoration;
-import org.diego.domain.reader.events.LenBookAdded;
-import org.diego.domain.reader.events.ValorationChanged;
-import org.diego.domain.reader.events.EmailEdited;
-import org.diego.domain.reader.events.ReaderRegistered;
+import org.diego.domain.commonvalues.Rating;
+import org.diego.domain.reader.events.*;
 import org.diego.generic.AggregateRoot;
 import org.diego.generic.DomainEvent;
 
@@ -16,7 +13,7 @@ public class Reader extends AggregateRoot<ReaderId> {
 
     protected Account account;
     protected AccountState accountState;
-    protected Valoration valoration;
+    protected Rating rating;
 
     //(ReaderId id, Name name,String lastName,String email,String dni,String street,String avenue,int houseNumber)
     public Reader(ReaderId id,String accountId, String name,String lastName,String email,String dni,String street,String avenue,int houseNumber) {
@@ -44,8 +41,12 @@ public class Reader extends AggregateRoot<ReaderId> {
     public void changeValoration(double valoration) {
         appendChange(new ValorationChanged(valoration)).apply();
     }
-    public void AddLenBook(){
-        appendChange(new LenBookAdded()).apply();
+    public void addBorrowBook(){
+        appendChange(new BorrowedBookAdded()).apply();
+    }
+
+    public void updatedAddress(String street,String avenue,int houseNumber){
+        appendChange(new AddressModified(street,avenue,houseNumber)).apply();
     }
 
 }

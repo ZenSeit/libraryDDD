@@ -2,9 +2,9 @@ package org.diego.business.reader;
 
 import org.diego.business.commons.EventsRepository;
 import org.diego.business.reader.mocks.ReaderMocks;
-import org.diego.domain.reader.commands.AddLenBookCommand;
+import org.diego.domain.reader.commands.ModifyAddressCommand;
+import org.diego.domain.reader.events.AddressModified;
 import org.diego.domain.reader.events.EmailEdited;
-import org.diego.domain.reader.events.LenBookAdded;
 import org.diego.generic.DomainEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,34 +20,36 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class LenBookAddedUseCaseTest {
+class AddressModifiedUseCaseTest {
 
     @Mock
     private EventsRepository eventsRepository;
 
-    private LenBookAddedUseCase lenBookAddedUseCase;
+    private AddressModifiedUseCase addressModifiedUseCase;
 
     @BeforeEach
     void setup(){
-        lenBookAddedUseCase = new LenBookAddedUseCase(eventsRepository);
+        addressModifiedUseCase = new AddressModifiedUseCase(eventsRepository);
     }
 
     @Test
     void successfulScenario(){
 
-        AddLenBookCommand addLenBookCommand = new AddLenBookCommand("readerId");
+        ModifyAddressCommand modifyAddressCommand = new ModifyAddressCommand("readerId","new street",
+                "new avenue",6);
 
-        Mockito.when(eventsRepository.findByAggregatedRootId(addLenBookCommand.getReaderId())).thenAnswer(invocationOnMock -> {
+        Mockito.when(eventsRepository.findByAggregatedRootId(modifyAddressCommand.getReaderId())).thenAnswer(invocationOnMock -> {
             return List.of(ReaderMocks.readerRegisteredMock());});
 
-        Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(LenBookAdded.class)))
+        Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(AddressModified.class)))
                 .thenAnswer(invocationOnMock -> {
                     return invocationOnMock.getArgument(0);
                 });
 
-        List<DomainEvent> domainEventList = lenBookAddedUseCase.apply(addLenBookCommand);
+        List<DomainEvent> domainEventList = addressModifiedUseCase.apply(modifyAddressCommand);
 
-        Assertions.assertEquals("org.diego.editemail",domainEventList.get(0).type);
+        Assertions.assertEquals("org.diego.addressmodified",domainEventList.get(0).type);
+
     }
 
 }

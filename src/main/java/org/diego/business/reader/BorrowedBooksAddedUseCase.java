@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class LenBookAddedUseCase implements UserCaseForCommand<AddLenBookCommand> {
+public class BorrowedBooksAddedUseCase implements UserCaseForCommand<AddLenBookCommand> {
 
     private final EventsRepository eventsRepository;
 
-    public LenBookAddedUseCase(EventsRepository eventsRepository) {
+    public BorrowedBooksAddedUseCase(EventsRepository eventsRepository) {
         this.eventsRepository = eventsRepository;
     }
 
@@ -23,7 +23,7 @@ public class LenBookAddedUseCase implements UserCaseForCommand<AddLenBookCommand
     public List<DomainEvent> apply(AddLenBookCommand command) {
         List<DomainEvent> readerEvents =  eventsRepository.findByAggregatedRootId(command.getReaderId());
         Reader reader = Reader.from(ReaderId.of(command.getReaderId()),readerEvents);
-        reader.AddLenBook();
+        reader.addBorrowBook();
         return reader.getUncommittedChanges().stream().map(eventsRepository::saveEvent).toList();
     }
 }
