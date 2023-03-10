@@ -12,10 +12,11 @@ public class CreateLoanOrderCommand extends Command {
     private int houseNumberBranch;
     private String phone;
     private String city;
-    private String userId;
+    private String readerId;
     private String bookId;
+    private String bookCatalogId;
 
-    public CreateLoanOrderCommand(String loanOrderId, String branchId, String nameBranch, String streetBranch, String avenueBranch, int houseNumberBranch, String phone, String city, String userId, String bookId) {
+    public CreateLoanOrderCommand(String loanOrderId, String branchId, String nameBranch, String streetBranch, String avenueBranch, int houseNumberBranch, String phone, String city, String readerId, String bookId,String bookCatalogId) {
         this.loanOrderId = loanOrderId;
         this.branchId = branchId;
         this.nameBranch = nameBranch;
@@ -24,8 +25,9 @@ public class CreateLoanOrderCommand extends Command {
         this.houseNumberBranch = houseNumberBranch;
         this.phone = phone;
         this.city = city;
-        this.userId = userId;
+        this.readerId = readerId;
         this.bookId = bookId;
+        this.bookCatalogId = bookCatalogId;
     }
 
     public String getLoanOrderId() {
@@ -92,12 +94,12 @@ public class CreateLoanOrderCommand extends Command {
         this.city = city;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getReaderId() {
+        return readerId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setReaderId(String readerId) {
+        this.readerId = readerId;
     }
 
     public String getBookId() {
@@ -106,5 +108,13 @@ public class CreateLoanOrderCommand extends Command {
 
     public void setBookId(String bookId) {
         this.bookId = bookId;
+    }
+
+    public String getBookCatalogId() {
+        return bookCatalogId;
+    }
+
+    public void setBookCatalogId(String bookCatalogId) {
+        this.bookCatalogId = bookCatalogId;
     }
 }

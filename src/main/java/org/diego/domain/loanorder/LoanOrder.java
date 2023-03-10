@@ -19,10 +19,10 @@ public class LoanOrder extends AggregateRoot<LoanOrderId> {
     protected BookId bookId;
 
     public LoanOrder(LoanOrderId id,String branchId,String nameBranch,String streetBranch,String avenueBranch,int houseNumberBranch,String phone,
-                     String city,String readerId,String bookId){
+                     String city,String readerId,String bookId,String bookCatalogId){
         super(id);
         subscribe(new LoanOrderChange(this));
-        appendChange(new LoanOrderCreated(branchId,nameBranch,streetBranch,avenueBranch,houseNumberBranch,phone,city,readerId,bookId)).apply();
+        appendChange(new LoanOrderCreated(branchId,nameBranch,streetBranch,avenueBranch,houseNumberBranch,phone,city,readerId,bookId, bookCatalogId)).apply();
     }
 
     private LoanOrder(LoanOrderId id){

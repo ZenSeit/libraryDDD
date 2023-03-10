@@ -22,8 +22,8 @@ public class LoanOrderCreatedUseCase implements UserCaseForCommand<CreateLoanOrd
     @Override
     public List<DomainEvent> apply(CreateLoanOrderCommand command) {
         LoanOrder loanOrder = new LoanOrder(LoanOrderId.of(command.getLoanOrderId()), command.getBranchId(), command.getNameBranch(), command.getStreetBranch(),
-                command.getAvenueBranch(), command.getHouseNumberBranch(), command.getPhone(), command.getCity(), command.getUserId(),
-                command.getBookId());
+                command.getAvenueBranch(), command.getHouseNumberBranch(), command.getPhone(), command.getCity(), command.getReaderId(),
+                command.getBookId(), command.getBookCatalogId());
         return loanOrder.getUncommittedChanges().stream().map(eventsRepository::saveEvent).toList();
     }
 }

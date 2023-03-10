@@ -14,7 +14,9 @@ public class LoanOrderCreated extends DomainEvent {
     private final String readerId;
     private final String bookId;
 
-    public LoanOrderCreated(String branchId, String nameBranch, String streetBranch, String avenueBranch, int houseNumberBranch, String phone, String city, String readerId, String bookId) {
+    private final String bookCatalogId;
+
+    public LoanOrderCreated(String branchId, String nameBranch, String streetBranch, String avenueBranch, int houseNumberBranch, String phone, String city, String readerId, String bookId, String bookCatalogId) {
         super("org.diego.createleanorder");
         this.branchId = branchId;
         this.nameBranch = nameBranch;
@@ -25,6 +27,7 @@ public class LoanOrderCreated extends DomainEvent {
         this.city = city;
         this.readerId = readerId;
         this.bookId = bookId;
+        this.bookCatalogId = bookCatalogId;
     }
 
     public String getBranchId() {
@@ -61,5 +64,9 @@ public class LoanOrderCreated extends DomainEvent {
 
     public String getBookId() {
         return bookId;
+    }
+
+    public String getBookCatalogId() {
+        return bookCatalogId;
     }
 }

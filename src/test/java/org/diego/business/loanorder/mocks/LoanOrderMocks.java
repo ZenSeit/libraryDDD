@@ -9,7 +9,7 @@ public class LoanOrderMocks {
     public static LoanOrderCreated loanOrder (){
         return new LoanOrderCreated("branchId",
                 "San Diego","apple","st pow",8,"5632896","Morelos",
-                "userId","bookId");
+                "userId","bookId", "bookCatalogId");
     }
 
     public static DomainEvent assignLibrarian(){

@@ -36,7 +36,7 @@ class LoanOrderCreatedUseCaseTest {
 
         CreateLoanOrderCommand createLoanOrderCommand = new CreateLoanOrderCommand("loanOrderId","branchId",
                 "San Diego","apple","st pow",8,"5632896","Morelos",
-                "userId","bookId");
+                "userId","bookId","bookCatalogId");
 
         Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(LoanOrderCreated.class)))
                 .thenAnswer(invocationOnMock -> {
